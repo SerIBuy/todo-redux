@@ -13,6 +13,10 @@ const TodoField = ({ text, id, status }) => {
         dispatch({ type: 'DELETE_TODO', id: id });
     };
 
+    const changeDone = () => {
+        dispatch({ type: 'CHANGE_DONE', id: id, text: text });
+    };
+
     const showInput = () => {
         setDisabled((prev) => !prev);
         setTimeout(() => {
@@ -43,9 +47,8 @@ const TodoField = ({ text, id, status }) => {
                 />
             ) : (
                 <span
-                    className={`toDoPharagraph ${
-                        status ? 'toDoPharagraphDone' : 'totoDoPharagraphActive'
-                    }`}
+                    className={`toDoPharagraph ${status ? 'toDoPharagraphDone' : 'totoDoPharagraphActive'
+                        }`}
                     onClick={showInput}
                 >
                     {fieldValue}
@@ -54,7 +57,7 @@ const TodoField = ({ text, id, status }) => {
             <button className="delBtn" onClick={deleteTodo}>
                 🗑️
             </button>
-            <button className="complitedBtn">✔️</button>
+            <button className="complitedBtn" onClick={changeDone}>✔️</button>
         </div>
     );
 };
